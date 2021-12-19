@@ -1,3 +1,6 @@
+from random import shuffle
+
+
 class SortingAlgorithms:
 
     def mergeSort(self, array) -> list:
@@ -29,8 +32,12 @@ class SortingAlgorithms:
             curValue += 1
         return ans
 
-    # TODO: MonkeySort
+    def monkeySort(self, array):
+        while not isSorted(array):
+            shuffle(array)
+        return array
 
+    # TODO: quick sort
     def quickSort(self, array):
         if len(array) < 2:
             return array
@@ -74,3 +81,10 @@ def mergeArrays(left, right):
     result.extend(right[j:])
 
     return result
+
+
+def isSorted(arr: list) -> bool:
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i + 1]:
+            return False
+    return True
