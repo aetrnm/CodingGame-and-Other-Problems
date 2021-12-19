@@ -5,7 +5,7 @@ from SortingAlgorithms import SortingAlgorithms
 SA = SortingAlgorithms()
 
 
-class MyTestCase(unittest.TestCase):
+class MergeSortTestCases(unittest.TestCase):
 
     def test_evenAmountOfElements(self):
         self.assertEqual(SA.mergeSort([3, 1, 4, 2]), [1, 2, 3, 4])
