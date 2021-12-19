@@ -48,9 +48,11 @@ class SortingAlgorithms:
             leftIt += 1
             rightIt -= 1
 
+        print('Array after while cycle: ', array)
         print('Left part: ', array[:barrierIndex])
         print('Barrier element is: ', barrierElement)
         print('Right part: ', array[barrierIndex + 1:])
+        print()
 
         return self.quickSort(array[:barrierIndex]) + [barrierElement] + self.quickSort(array[barrierIndex + 1:])
 
