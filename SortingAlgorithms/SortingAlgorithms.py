@@ -1,6 +1,3 @@
-from random import shuffle
-
-
 class SortingAlgorithms:
 
     def mergeSort(self, array) -> list:
@@ -33,6 +30,7 @@ class SortingAlgorithms:
         return ans
 
     def monkeySort(self, array):
+        from random import shuffle
         while not isSorted(array):
             shuffle(array)
         return array
