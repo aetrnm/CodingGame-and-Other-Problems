@@ -1,3 +1,5 @@
+import math
+
 class SortingAlgorithms:
 
     def mergeSort(self, array: list) -> list:
@@ -36,36 +38,37 @@ class SortingAlgorithms:
         return array
 
     # TODO: quick sort
+
     def quickSort(self, array: list) -> list:
         if len(array) < 2:
             return array
-        barrierIndex = len(array) // 2
+        barrierIndex = math.ceil(len(array) / 2)
         barrierElement = array[barrierIndex]
-        leftIt = 0
+        print('Initial array:', array)
+        array[barrierIndex], array[0] = array[0], array[barrierIndex]
+        leftIt = 1
         rightIt = len(array) - 1
-        while leftIt < rightIt:
-            while array[leftIt] < barrierElement and leftIt <= len(array) - 1:
-                if leftIt == barrierIndex:
-                    leftIt += 1
-                    continue
+        while True:
+            while leftIt <= rightIt and array[leftIt] < barrierElement:
                 leftIt += 1
-            while array[rightIt] >= barrierElement and rightIt >= 0:
-                if rightIt == barrierIndex:
-                    rightIt -= 1
-                    continue
+            while rightIt > leftIt and array[rightIt] > barrierElement:
                 rightIt -= 1
-
+            if leftIt >= rightIt:
+                break
+            print('Array of each iteration: ', array)
             array[leftIt], array[rightIt] = array[rightIt], array[leftIt]
-            leftIt += 1
-            rightIt -= 1
 
-        print('Array after while cycle: ', array)
-        print('Left part: ', array[:barrierIndex])
+        array[0], array[leftIt-1] = array[leftIt-1], array[0]
+        print('Array before division', array)
+
+        print('Left iterator: ', leftIt)
+        print('Right iterator: ', rightIt)
+        print('Left part: ', array[:leftIt-1])
         print('Barrier element is: ', barrierElement)
-        print('Right part: ', array[barrierIndex:])
+        print('Right part: ', array[leftIt:])
         print()
 
-        return self.quickSort(array[:barrierIndex]) + self.quickSort(array[barrierIndex:])
+        return self.quickSort(array[:leftIt-1]) + [barrierElement] + self.quickSort(array[leftIt:])
 
 
 def mergeArrays(left: list, right: list) -> list:
