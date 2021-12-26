@@ -1,5 +1,6 @@
 import math
 
+
 class SortingAlgorithms:
 
     def mergeSort(self, array: list) -> list:
@@ -37,14 +38,11 @@ class SortingAlgorithms:
             shuffle(array)
         return array
 
-    # TODO: quick sort
-
     def quickSort(self, array: list) -> list:
         if len(array) < 2:
             return array
         barrierIndex = math.ceil(len(array) / 2)
         barrierElement = array[barrierIndex]
-        print('Initial array:', array)
         array[barrierIndex], array[0] = array[0], array[barrierIndex]
         leftIt = 1
         rightIt = len(array) - 1
@@ -55,20 +53,46 @@ class SortingAlgorithms:
                 rightIt -= 1
             if leftIt >= rightIt:
                 break
-            print('Array of each iteration: ', array)
             array[leftIt], array[rightIt] = array[rightIt], array[leftIt]
 
-        array[0], array[leftIt-1] = array[leftIt-1], array[0]
-        print('Array before division', array)
+        array[0], array[leftIt - 1] = array[leftIt - 1], array[0]
 
-        print('Left iterator: ', leftIt)
-        print('Right iterator: ', rightIt)
-        print('Left part: ', array[:leftIt-1])
-        print('Barrier element is: ', barrierElement)
-        print('Right part: ', array[leftIt:])
-        print()
+        return self.quickSort(array[:leftIt - 1]) + [barrierElement] + self.quickSort(array[leftIt:])
 
-        return self.quickSort(array[:leftIt-1]) + [barrierElement] + self.quickSort(array[leftIt:])
+    def heapSort(self, array: list) -> list:
+        createMaxHeap(0, array)
+        for currentSubArraySize in range(len(array)-1, -1, -1):
+            array[0], array[currentSubArraySize] = array[currentSubArraySize], array[0]
+            siftDown(0, array, currentSubArraySize)
+        return array
+
+
+def siftDown(i: int, array: list, currentSubArraySize):
+    leftI = i * 2 + 1
+    rightI = i * 2 + 2
+
+    leftChild = array[leftI] if leftI < currentSubArraySize else -math.inf
+    rightChild = array[rightI] if rightI < currentSubArraySize else -math.inf
+    elements = [array[i], leftChild, rightChild]
+    tempMax = max(elements)
+
+    if tempMax == rightChild:
+        array[i], array[rightI] = array[rightI], array[i]
+        siftDown(rightI, array, currentSubArraySize)
+    elif tempMax == leftChild:
+        array[i], array[leftI] = array[leftI], array[i]
+        siftDown(leftI, array, currentSubArraySize)
+
+
+def createMaxHeap(i: int, array: list) -> None:
+    arraySize = len(array)
+    leftI = i * 2 + 1
+    rightI = i * 2 + 2
+    if leftI < arraySize:
+        createMaxHeap(leftI, array)
+    if rightI < arraySize:
+        createMaxHeap(rightI, array)
+    siftDown(i, array, arraySize)
 
 
 def mergeArrays(left: list, right: list) -> list:
