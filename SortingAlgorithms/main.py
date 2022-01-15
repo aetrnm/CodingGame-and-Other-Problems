@@ -9,4 +9,4 @@ with open('input.txt') as f:
 
 SA = SortingAlgorithms()
 
-print(SA.mergeSort(arr))
+print(SA.heapSort(arr))

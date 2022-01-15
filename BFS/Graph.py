@@ -1,4 +1,5 @@
-import queue, math
+import queue
+
 
 class Graph:
     def __init__(self, numberOfNodes, adjacencyMatrix):
@@ -31,6 +32,7 @@ class Graph:
 
         return giveBFSPath(visitingSequence, finishNode)
 
+
 def giveBFSPath(visitingSequence, finishNode):
     nextNode = finishNode
     ans = [nextNode]
@@ -40,32 +42,3 @@ def giveBFSPath(visitingSequence, finishNode):
             ans.reverse()
             return ans
         ans.append(nextNode)
-
-nodesNumber, linksNumber, exitsNumber = [int(i) for i in input().split()]
-adjacencyMatrix = [[0] * nodesNumber for _ in range(nodesNumber)]
-
-for i in range(linksNumber):
-  n1, n2 = [int(j) for j in input().split()]
-  adjacencyMatrix[n1][n2] = 1
-  adjacencyMatrix[n2][n1] = 1
-
-myGraph = Graph(nodesNumber, adjacencyMatrix)
-
-blueNodes = []
-for i in range(exitsNumber):
-  blueNode = int(input())
-  blueNodes.append(blueNode)
-
-while True:
-  virusNode = int(input())
-
-  minimumLengthBetweenVirusAndBlueNode = math.inf
-  minimunPathBetweenVirusAndBlueNode = []
-  for startNode in blueNodes:
-    finishNode = virusNode
-    currentPath = myGraph.BFS(startNode, finishNode)
-    if len(currentPath) < minimumLengthBetweenVirusAndBlueNode:
-      minimumLengthBetweenVirusAndBlueNode = len(currentPath)
-      minimunPathBetweenVirusAndBlueNode = currentPath
-
-  print(f"{minimunPathBetweenVirusAndBlueNode[0]} {minimunPathBetweenVirusAndBlueNode[1]}")

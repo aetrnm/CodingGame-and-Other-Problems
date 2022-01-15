@@ -27,8 +27,6 @@ wayExists = False
 while not visitingQueue.empty():
     currentNode = visitingQueue.get()
 
-    # print("BFS at vertex: " + str(currentNode))
-
     for i in range(numberOfNodes):
         if adjacencyMatrix[currentNode][i] == 1 and not visitedNodes[i]:
             visitingQueue.put(i)
@@ -41,8 +39,8 @@ while not visitingQueue.empty():
 
 
 def giveBFSPath():
-    nextNode = finishNode  # -1
-    ans = [nextNode+1]  # 4 0 1 2
+    nextNode = finishNode
+    ans = [nextNode+1]
     while True:
         nextNode = visitingSequence[nextNode]
         if nextNode == -1:
