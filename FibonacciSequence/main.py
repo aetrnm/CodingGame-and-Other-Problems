@@ -14,7 +14,7 @@ def getFibonacciNumber(n):
     root_5 = decimal.Decimal(5).sqrt()
     phi = (1 + root_5) / 2
 
-    a = binpow(phi, n) / (root_5)
+    a = binpow(phi, n) / root_5
 
     return a
 
