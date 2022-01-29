@@ -22,7 +22,7 @@ class FibonacciLongVSAdvancedTests(unittest.TestCase):
         self.assertEqual(fibAdvanced(100_000_000), fibLong(100_000_000))
 
     def test_Fibs1_000_000_000(self):
-        self.assertEqual(fibAdvanced(100_000_000), fibLong(100_000_000))
+        self.assertEqual(fibAdvanced(1_000_000_000), fibLong(1_000_000_000))
 
     def test_Fibs1_000_000_000_000_000(self):
         self.assertEqual(fibAdvanced(1_000_000_000_000_000), fibLong(1_000_000_000_000_000))
