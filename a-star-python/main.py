@@ -1,5 +1,3 @@
-from multiprocessing.dummy import current_process
-from queue import Empty
 from Cell import Cell
 
 

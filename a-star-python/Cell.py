@@ -5,7 +5,7 @@ class Cell:
     self.isWall = isWall
     self.GDistance = -1 # distance from start to node
     self.HDistance = -1 # distance from node to finish
-    self.FDistance = 0 # GDistance + HDistance
+    self.FDistance = -1 # GDistance + HDistance
     self.x = 0
     self.y = 0
     self.parent = None
